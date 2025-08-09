@@ -1,4 +1,6 @@
 import { config } from './common/config/index.js';
+import { sequelize } from './common/database/db.js';
+import { cronjobs } from './jobs.js';
 import { getHTTPServer } from './server.js';
 
 
@@ -10,7 +12,11 @@ process.on(
 
 const startServer = async () => {
   try {
-    // Initialize and run server
+    await sequelize.authenticate();
+    await sequelize.sync();
+
+    cronjobs.forEach(job => job.start());
+
     const server = getHTTPServer();
     server.listen(config.PORT);
 
