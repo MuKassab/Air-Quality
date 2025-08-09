@@ -10,4 +10,7 @@ export const config = {
 
   IQAIR_API_BASE_URL: process.env.IQAIR_API_BASE_URL,
   IQAIR_API_KEY: process.env.IQAIR_API_KEY,
+
+  POSTGRES_URI: process.env.POSTGRES_URI,
+  POSTGRES_TEST_URI: process.env.POSTGRES_TEST_URI,
 };
