@@ -8,5 +8,6 @@ export const config = {
 
   REDIS_URI: process.env.REDIS_URI,
 
-  AIR_QUALITY_API_KEY: process.env.AIR_QUALITY_API_KEY,
+  IQAIR_API_BASE_URL: process.env.IQAIR_API_BASE_URL,
+  IQAIR_API_KEY: process.env.IQAIR_API_KEY,
 };
