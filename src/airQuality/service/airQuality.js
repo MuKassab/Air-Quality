@@ -38,9 +38,9 @@ export const airQualityService = {
     });
 
     const formattedResponse = {
-      aqius: parisMaxPollutionData.aqius,
-      mainus: parisMaxPollutionData.mainus,
-      timestamp: parisMaxPollutionData.createdAt,
+      aqius: parisMaxPollutionData?.aqius,
+      mainus: parisMaxPollutionData?.mainus,
+      timestamp: parisMaxPollutionData?.createdAt,
     };
 
     return formattedResponse;

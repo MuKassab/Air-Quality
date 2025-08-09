@@ -13,4 +13,8 @@ export const config = {
 
   POSTGRES_URI: process.env.POSTGRES_URI,
   POSTGRES_TEST_URI: process.env.POSTGRES_TEST_URI,
+
+  POSTGRES_USER: process.env.POSTGRES_USER,
+  POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
+  POSTGRES_HOST: process.env.POSTGRES_HOST,
 };
