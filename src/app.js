@@ -10,6 +10,7 @@ import compression from 'compression';
 import { COMPRESSION_LEVEL, COMPRESSION_THRESHOLD } from './common/constants/index.js';
 import { errorHandler } from './common/middlewares/index.js';
 import apiRouter from './routes.js';
+import { requestLogger } from './common/middlewares/requestLogger.js';
 
 const { NOT_FOUND } = httpStatus;
 
@@ -26,12 +27,15 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use(compression({ level: COMPRESSION_LEVEL, threshold: COMPRESSION_THRESHOLD }));
 
-app.use(errorHandler);
+app.use(requestLogger);
 
 app.use('/api', apiRouter);
 
 // If requested endpoint is not found then reply with not found
 app.use((req, res) => { res.status(NOT_FOUND).json({ message: `Cannot ${req.method} ${req.originalUrl}` }); });
+
+
+app.use(errorHandler);
 
 
 // TODO: remove this debug log

@@ -19,11 +19,12 @@ const extractValidationErrors = error => error.details.map(detail => ({
  * @param {Object} schema
  */
 export const validate = schema => {
-  const { params = {}, body = {}, query = {} } = schema;
+  const { params = {}, body = {}, query = {}, headers = {} } = schema;
 
   const compliedParamsSchema = Joi.compile(params);
   const compliedBodySchema = Joi.compile(body);
   const compliedQuerySchema = Joi.compile(query);
+  const compliedHeadersSchema = Joi.compile(headers);
 
   // to get all possible errors from validation
   const options = { abortEarly: false };
@@ -85,6 +86,25 @@ export const validate = schema => {
 
       // replace passed query with validated query to handle default values for non-required fields
       req.query = validatedQuery;
+    }
+
+    if (!_.isEmpty(headers)) {
+      const { value: validatedHeaders, error } = compliedHeadersSchema.validate(
+        req.headers,
+        options,
+      );
+
+      if (!_.isNil(error)) {
+        throw new CustomAPIError({
+          message: ERROR_CODES.HEADER_VALIDATION_FAILED.message,
+          status: BAD_REQUEST,
+          errorCode: ERROR_CODES.HEADER_VALIDATION_FAILED.errorCode,
+          meta: { errors: extractValidationErrors(error) },
+        });
+      }
+
+      // replace passed headers with validated headers to handle default values for non-required fields
+      req.headers = validatedHeaders;
     }
 
     next();

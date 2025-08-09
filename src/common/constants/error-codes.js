@@ -19,4 +19,12 @@ export const ERROR_CODES = {
     message: 'Query validation failed',
     errorCode: '@error-codes/query-validation-failed',
   },
+  HEADER_VALIDATION_FAILED: {
+    message: 'Header validation failed',
+    errorCode: '@error-codes/header-validation-failed',
+  },
+  AIR_QUALITY_API_ERROR: {
+    message: 'Air quality API error',
+    errorCode: '@error-codes/air-quality-api-error',
+  },
 };
