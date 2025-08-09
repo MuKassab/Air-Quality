@@ -1,0 +1,11 @@
+{
+  "files.eol": "\n",
+  "eslint.enable": true,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+}
