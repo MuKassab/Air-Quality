@@ -11,6 +11,7 @@ import { COMPRESSION_LEVEL, COMPRESSION_THRESHOLD } from './common/constants/ind
 import { errorHandler } from './common/middlewares/index.js';
 import apiRouter from './routes.js';
 import { requestLogger } from './common/middlewares/requestLogger.js';
+import docsRouter from './docs-router.js';
 
 const { NOT_FOUND } = httpStatus;
 
@@ -30,6 +31,7 @@ app.use(compression({ level: COMPRESSION_LEVEL, threshold: COMPRESSION_THRESHOLD
 app.use(requestLogger);
 
 app.use('/api', apiRouter);
+app.use(docsRouter);
 
 // If requested endpoint is not found then reply with not found
 app.use((req, res) => { res.status(NOT_FOUND).json({ message: `Cannot ${req.method} ${req.originalUrl}` }); });
