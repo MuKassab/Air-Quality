@@ -7,7 +7,7 @@ import { getAirQualityController } from '../controller/index.js';
 const router = Router();
 
 router.get(
-  '/nearest-city',
+  '/city-pollution',
   validate(airQualityValidationSchema.getAirQualityForNearestCityByCoordinates),
   getAirQualityController.getAirQualityForNearestCityByCoordinates,
 );
