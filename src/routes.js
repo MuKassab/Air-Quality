@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import httpStatus from 'http-status';
-import airQualityRouter from './airQuality/router/airQuality.js';
+import { pollutionRouter } from './airQuality/router/index.js';
 
 const { OK } = httpStatus;
 
 const apiRouter = Router();
 
-apiRouter.use('/air-quality', airQualityRouter);
+apiRouter.use('/air-quality', pollutionRouter);
 
 apiRouter.get('/status', (req, res) => {
   res.status(OK).json({

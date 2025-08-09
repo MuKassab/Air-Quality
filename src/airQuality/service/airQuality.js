@@ -1,5 +1,7 @@
+import { CITIES } from '../../common/constants/cities.js';
 import { IQAirClient } from '../../common/IQAir/IQAirClient.js';
 import { IQAirUtilities } from '../../common/IQAir/IQAirUtilities.js';
+import CitiesPollutionTracking from '../model/index.js';
 
 
 export const airQualityService = {
@@ -17,6 +19,28 @@ export const airQualityService = {
 
     const formattedResponse = {
       Pollution: airQualityData.pollution,
+    };
+
+    return formattedResponse;
+  },
+
+  getParisMaxPollutionData: async () => {
+    const parisMaxPollutionData = await CitiesPollutionTracking.findOne({
+      where: {
+        city: CITIES.PARIS,
+      },
+      order: [
+        ['aqius', 'DESC'],
+      ],
+      limit: 1,
+      raw: true,
+      attributes: ['aqius', 'mainus', 'createdAt'],
+    });
+
+    const formattedResponse = {
+      aqius: parisMaxPollutionData.aqius,
+      mainus: parisMaxPollutionData.mainus,
+      timestamp: parisMaxPollutionData.createdAt,
     };
 
     return formattedResponse;
