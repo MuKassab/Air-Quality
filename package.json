@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./src/main.js",
     "dev": "nodemon ./src/main.js",
-    "dev:docker": "docker-compose up -d && docker exec -it air-quality /bin/sh",
+    "dev:docker": "docker compose up -d && docker exec -it air-quality-api /bin/sh",
     "test": "cross-env NODE_ENV=@node-env/testing NODE_OPTIONS=--experimental-vm-modules npx jest --forceExit --logHeapUsage",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
